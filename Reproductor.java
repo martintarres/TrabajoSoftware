@@ -1,6 +1,6 @@
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
-import javazoom.jl.player.advanced.AdvancedPlayer;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -44,11 +44,20 @@ import javax.swing.JTextField;
 import javax.swing.AbstractListModel;
 
 
+
+
+
+
+
+import javazoom.jlgui.basicplayer.BasicPlayer;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
+
 public class Reproductor extends JFrame {
 
 	private JPanel contentPane;
 	String marco;
-	AdvancedPlayer reproductor;
+	//AdvancedPlayer reproductor;
+	 BasicPlayer player;
 	//String files;
 	//private String String datos;
 
@@ -56,10 +65,12 @@ public class Reproductor extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-	
+		//	Repro y= new Repro();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					//player = new BasicPlayer();
 					Reproductor frame = new Reproductor();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -85,7 +96,7 @@ public class Reproductor extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		BotonAdelante.setBounds(335, 205, 89, 23);
+		BotonAdelante.setBounds(335, 205, 70, 23);
 		contentPane.add(BotonAdelante);
 		
 		JSlider BarraVolumen = new JSlider();
@@ -98,22 +109,21 @@ public class Reproductor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		BotonAtras.setBounds(19, 205, 89, 23);
+		BotonAtras.setBounds(12, 205, 70, 23);
 		contentPane.add(BotonAtras);
 		
-		JButton botonPlayPause = new JButton("Play / Pause");
-		botonPlayPause.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//AdvancedPlayer reproductor = null;
-				reproductor.stop();
-				
+		JButton BotonStop = new JButton("Stop");
+		BotonStop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					player.stop();
+				} catch (BasicPlayerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		botonPlayPause.setBounds(121, 205, 104, 23);
-		contentPane.add(botonPlayPause);
-		
-		JButton BotonStop = new JButton("Stop");
-		BotonStop.setBounds(236, 205, 89, 23);
+		BotonStop.setBounds(255, 205, 70, 23);
 		contentPane.add(BotonStop);
 		
 		Label TextoBuscar = new Label("Buscar Cancion");
@@ -144,16 +154,49 @@ public class Reproductor extends JFrame {
 				System.out.println(unir);
 				
 				try {
-					reproductor=new AdvancedPlayer(new FileInputStream(unir));
-					reproductor.play();
+					//reproductor=new AdvancedPlayer(new FileInputStream(unir));
+					//reproductor.play();
+					player= new BasicPlayer();
+					player.open(new File(unir));
+					player.play();
 				}
 				catch(Exception e){
 					System.out.println("Error");
+					
 				}
+				//player.open(new File(unir));
 			}
 		});
 		list.setBounds(13, 55, 327, 127);
 		contentPane.add(list);
+		
+		JButton BotonPlay = new JButton("Play");
+		BotonPlay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			try {
+				player.resume();
+			} catch (BasicPlayerException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			}
+		});
+		BotonPlay.setBounds(92, 205, 70, 23);
+		contentPane.add(BotonPlay);
+		
+		JButton BotonPause = new JButton("||");
+		BotonPause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					player.pause();
+				} catch (BasicPlayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		BotonPause.setBounds(172, 205, 70, 23);
+		contentPane.add(BotonPause);
 	
 		String path= "C:\\Users\\marti\\Music";
 		File files;
@@ -164,7 +207,8 @@ public class Reproductor extends JFrame {
 		for(int i=0; i<listFiles.length;i++){
 			if(listFiles[i].isFile()){
 				files=listFiles[i].getAbsoluteFile();
-				if(files.getName().endsWith("txt") || files.getName().endsWith("TXT") || files.getName().endsWith("mp3") ){
+				if(files.getName().endsWith("txt") || files.getName().endsWith("TXT") || files.getName().endsWith("mp3") 
+						|| files.getName().endsWith("wav")){
 				System.out.println(files);
 				list.add(files.getName());
 			
@@ -208,44 +252,6 @@ public class Reproductor extends JFrame {
 			}
 		});
 	}
-	
-	
-	
-	/*	
-	private void buscar (){
-		
-		/*ArrayList<File> resultados;
-		resultados=new ArrayList<File>();
-		
-		
-		String path= "C:\\Users\\marti\\Music";
-		File f= new File (path);
-		File[] archivos = f.listFiles();
-		for(int i=0;i<archivos.length;i++){
-		File archivo = archivos[i];
-		
-		if(archivo.getName() != null){
-			resultados.add(archivo);
-		//	System.out.println(archivo);
-		}
-		}
-		
-		for (int i=0; i<resultados.size();i++){
-			System.out.println(resultados[i]);
-		}*/
-		
-		/*String path= "C:\\Users\\marti\\Music";
-		//String files;
-		File folder =new File (path);
-		File [] listFiles = folder.listFiles();
-		
-		for(int i=0; i<listFiles.length;i++){
-			if(listFiles[i].isFile()){
-				files=listFiles[i].getName();
-				System.out.println(files);
-			}
-		}
-	}*/
 }
 
 
