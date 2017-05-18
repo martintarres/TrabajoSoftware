@@ -56,8 +56,10 @@ public class Reproductor extends JFrame {
 
 	private JPanel contentPane;
 	String marco;
-	//AdvancedPlayer reproductor;
+	String unir;
+	static //AdvancedPlayer reproductor;
 	 BasicPlayer player;
+	
 	//String files;
 	//private String String datos;
 
@@ -66,7 +68,7 @@ public class Reproductor extends JFrame {
 	 */
 	public static void main(String[] args) {
 		//	Repro y= new Repro();
-		
+		 player= new BasicPlayer();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -146,17 +148,34 @@ public class Reproductor extends JFrame {
 		contentPane.add(BuscarCancion);
 		
 		List list = new List();
+		
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.out.println("Apretaste " + list.getSelectedItem());
+				unir = "C:\\Users\\marti\\Music\\" + list.getSelectedItem();
+				
+
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+			//	System.out.println("Apretaste " + list.getSelectedItem()); // para ver el nombre elemento seleccionado
+				//System.out.println("Apretaste " + )); // para ver el elemento seleccionado
+			//	 unir = "C:\\Users\\marti\\Music\\" + list.getSelectedItem();
+				//System.out.println(unir);
+			}
+		});
 		list.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Apretaste " + list.getSelectedItem()); // para ver el nombre elemento seleccionado
+			//	System.out.println("Apretaste " + list.getSelectedItem()); // para ver el nombre elemento seleccionado
 				//System.out.println("Apretaste " + )); // para ver el elemento seleccionado
-				String unir = "C:\\Users\\marti\\Music\\" + list.getSelectedItem();
-				System.out.println(unir);
+				// unir = "C:\\Users\\marti\\Music\\" + list.getSelectedItem();
+			//	System.out.println(unir);
 				
 				try {
 					//reproductor=new AdvancedPlayer(new FileInputStream(unir));
 					//reproductor.play();
-					player= new BasicPlayer();
+					
 					player.open(new File(unir));
 					player.play();
 				}
@@ -164,7 +183,6 @@ public class Reproductor extends JFrame {
 					System.out.println("Error");
 					
 				}
-				//player.open(new File(unir));
 			}
 		});
 		list.setBounds(13, 55, 327, 127);
@@ -173,12 +191,46 @@ public class Reproductor extends JFrame {
 		JButton BotonPlay = new JButton("Play");
 		BotonPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			try {
-				player.resume();
-			} catch (BasicPlayerException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		
+				System.out.println(player.getStatus());
+				if(player.getStatus()==-1 ||player.getStatus()== 2){
+					
+				//	player= new BasicPlayer();
+					try {
+						player.open(new File(unir));
+						player.play();
+					} catch (BasicPlayerException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				}
+				
+					if(player.getStatus()==0 ){
+				try {
+					player.open(new File(unir));
+					player.play();
+				} catch (BasicPlayerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
 			}
+				
+				
+				if(player.getStatus()==1){
+					
+						try {
+							player.resume();
+						} catch (BasicPlayerException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				
+				}
+				
+				
+			
+				
 			}
 		});
 		BotonPlay.setBounds(92, 205, 70, 23);
