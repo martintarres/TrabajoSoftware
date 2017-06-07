@@ -13,11 +13,12 @@ public class Modelo {
 	String path;
 	File files = null ;
 	static BasicPlayer player;
-	List list;
+	List listapr;
 	String unir;
 	File [] listFiles;
 	File folder;
 	File archivo;
+	List listarep;
 	
 	public void iniciarm(){
 		player= new BasicPlayer();
@@ -25,10 +26,10 @@ public class Modelo {
 		folder =new File (path);
 	}
 	
-	public void cargar(List list){
+	public void cargar(List listapr){
 		
 		
-		this.list=list;
+		this.listapr=listapr;
 		 
 		 
 		 listFiles = folder.listFiles();
@@ -39,7 +40,7 @@ public class Modelo {
 					if(files.getName().endsWith("mp3") || files.getName().endsWith("wav") || files.getName().endsWith("mp4")){
 					System.out.println(files);
 			//		System.out.println(listFiles[i]);
-					list.add(files.getName());
+					listapr.add(files.getName());
 					
 					}
 				}
@@ -49,7 +50,7 @@ public class Modelo {
 
 	
 	public void play(){
-				unir= path.concat("\\" + list.getSelectedItem());
+				unir= path.concat("\\" + listapr.getSelectedItem());
 				archivo = new File ( unir);
 				if(player.getStatus()==-1 ||player.getStatus()== 2){
 					
@@ -108,8 +109,8 @@ public class Modelo {
 	}
 	
 	public void adelante(){
-		list.select((list.getSelectedIndex()+1));
-		unir = "C:\\Users\\marti\\Music\\" + list.getSelectedItem();
+		listapr.select((listapr.getSelectedIndex()+1));
+		unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
 		try {
 			player.stop();
 			player.open(new File(unir));
@@ -121,8 +122,8 @@ public class Modelo {
 	}
 	public void atras(){
 		
-		list.select((list.getSelectedIndex()-1));
-		unir = "C:\\Users\\marti\\Music\\" + list.getSelectedItem();
+		listapr.select((listapr.getSelectedIndex()-1));
+		unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
 		try {
 			player.stop();
 			player.open(new File(unir));
@@ -147,7 +148,7 @@ public class Modelo {
 	
 	public void buscarcancion(String s){
 		
-		list.removeAll();
+		listapr.removeAll();
 		
 		for(int i=0; i<listFiles.length;i++){
 			if(listFiles[i].isFile()){
@@ -157,7 +158,7 @@ public class Modelo {
 					
 					if(files.toString().toLowerCase().contains(s)){
 						//System.out.println(files.toString());
-						list.add(files.getName());
+						listapr.add(files.getName());
 						
 					}
 					
@@ -179,9 +180,22 @@ public class Modelo {
 				path= folder.getAbsolutePath();
 			
 				//path= path.concat("\\");
-				list.removeAll();
+				listapr.removeAll();
 				cargar(lista);
 		}
+	}
+	
+	public void agregarLista(String string, List listarep){
+			String archi;
+			archi=string;
+			this.listarep=listarep;
+			
+			listarep.add(archi);
+			
+	}
+	
+	public void borrar(String archivo){
+		listarep.remove(archivo);
 	}
 
 }

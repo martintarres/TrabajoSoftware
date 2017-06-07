@@ -10,14 +10,18 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 
 
 public class VistaPrincipal extends JFrame implements Observer {
-	JPanel contentPane;
+	
 	ClaseObservador miObservador;
 	int seleccion;
+	
+	JPanel contentPane;
 	List list;
 	TextField BuscarCancion;
 	JButton BotonAdelante;
@@ -29,6 +33,8 @@ public class VistaPrincipal extends JFrame implements Observer {
 	JButton BotonPause;
 	JButton SeleccionCarpeta;
 	JSlider AvanceCancion;
+	JButton ListaReproduccion;
+	JButton AgregarListaReproduccion;
 	
 		public VistaPrincipal(ClaseObservador observador){
 			
@@ -51,7 +57,7 @@ public class VistaPrincipal extends JFrame implements Observer {
 			contentPane.add(BuscarCancion);
 			
 			BotonAdelante = new JButton(">>");
-			BotonAdelante.setBounds(335, 205, 70, 23);
+			BotonAdelante.setBounds(252, 205, 70, 23);
 			contentPane.add(BotonAdelante);
 			
 			BarraVolumen = new JSlider();
@@ -67,7 +73,7 @@ public class VistaPrincipal extends JFrame implements Observer {
 			
 			
 			BotonStop = new JButton("Stop");
-			BotonStop.setBounds(255, 205, 70, 23);
+			BotonStop.setBounds(172, 205, 70, 23);
 			contentPane.add(BotonStop);
 			
 			
@@ -80,16 +86,24 @@ public class VistaPrincipal extends JFrame implements Observer {
 			contentPane.add(BotonPlay);
 			
 			BotonPause = new JButton("||");
-			BotonPause.setBounds(172, 205, 70, 23);
-			contentPane.add(BotonPause);
+			BotonPause.setBounds(92, 205, 70, 23);
+			//contentPane.add(BotonPause);
 			
 			SeleccionCarpeta = new JButton("Seleccion carpeta");
-			SeleccionCarpeta.setBounds(269, 11, 89, 23);
+			SeleccionCarpeta.setBounds(256, 11, 35, 23);
 			contentPane.add(SeleccionCarpeta);
 			
 			AvanceCancion = new JSlider();
 			AvanceCancion.setBounds(34, 235, 353, 26);
 			contentPane.add(AvanceCancion);
+			
+			ListaReproduccion = new JButton("Lista");
+			ListaReproduccion.setBounds(335, 205, 70, 23);
+			contentPane.add(ListaReproduccion);
+			
+			AgregarListaReproduccion = new JButton("Agregar Lista");
+			AgregarListaReproduccion.setBounds(301, 11, 35, 23);
+			contentPane.add(AgregarListaReproduccion);
 			
 			
 		}
@@ -98,18 +112,23 @@ public class VistaPrincipal extends JFrame implements Observer {
 		public void update(Observable o, Object arg) {
 			seleccion=miObservador.getPanelSeleccionado();
 			
-			if (seleccion == 1){
+			if(seleccion ==1 ){
+				contentPane.remove(BotonPlay);
+				contentPane.add(BotonPause);
+				miObservador.setPanel(0);
 				
+			}
+			
+			if ( seleccion == 2){
+				contentPane.remove(BotonPause);
+				contentPane.add(BotonPlay);
+				miObservador.setPanel(0);
 				
-				
-				
+			}
+			
+			if(seleccion == 4){
 				miObservador.setVista(contentPane);
-				
-				miObservador.setPanel(5);
-		
-				
-				
-
+				miObservador.setPanel(0);
 			}
 			
 			

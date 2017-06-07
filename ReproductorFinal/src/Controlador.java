@@ -2,33 +2,55 @@ import java.awt.List;
 import java.awt.TextComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 
+import javax.swing.JList;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 
 public class Controlador implements ActionListener {
 
 	Modelo modelo;
 	Vista vista;
-	List lista;
+	List listapr;
+	ClaseObservador miObservador;
+	ClaseObservador miObser;
+	
+	List listarep;
 	
 	public Controlador(Modelo modelo, Vista vista){
+		
+		miObservador= vista.miObservador;
+		miObser=vista.miObser;
+		
 		this.modelo=modelo;
 		this.vista=vista;
 		
-		vista.vistag.vistaprincipal.list.addActionListener(this);
-		vista.vistag.vistaprincipal.BuscarCancion.addTextListener(new MyTextListener());
-		vista.vistag.vistaprincipal.BotonAdelante.addActionListener(this);
-		vista.vistag.vistaprincipal.BarraVolumen.addChangeListener(new SliderListener());
-		vista.vistag.vistaprincipal.BotonAtras.addActionListener(this);
-		vista.vistag.vistaprincipal.BotonStop.addActionListener(this);
-		vista.vistag.vistaprincipal.BotonPlay.addActionListener(this);
-		vista.vistag.vistaprincipal.BotonPause.addActionListener(this);
-		vista.vistag.vistaprincipal.SeleccionCarpeta.addActionListener(this);
-	
+		vista.vistaprincipal.list.addActionListener(this);
+		vista.vistaprincipal.BuscarCancion.addTextListener(new MyTextListener());
+		vista.vistaprincipal.BotonAdelante.addActionListener(this);
+		vista.vistaprincipal.BarraVolumen.addChangeListener(new SliderListener());
+		vista.vistaprincipal.BotonAtras.addActionListener(this);
+		vista.vistaprincipal.BotonStop.addActionListener(this);
+		vista.vistaprincipal.BotonPlay.addActionListener(this);
+		vista.vistaprincipal.BotonPause.addActionListener(this);
+		vista.vistaprincipal.SeleccionCarpeta.addActionListener(this);
+		vista.vistaprincipal.ListaReproduccion.addActionListener(this);
+		vista.vistaprincipal.AgregarListaReproduccion.addActionListener(this);
+		vista.vistaprincipal.list.addMouseListener(ml);
+		
+		
+		
+		vista.vistalistareproduccion.BotonVolver.addActionListener(this);
+		vista.vistalistareproduccion.BotonPlay.addActionListener(this);
+		vista.vistalistareproduccion.BotonPause.addActionListener(this);
+		vista.vistalistareproduccion.BotonBorrar.addActionListener(this);
 		
 		
 		
@@ -40,38 +62,82 @@ public class Controlador implements ActionListener {
 	public void iniciar(){
 		modelo.iniciarm();
 		
-		lista = vista.vistag.vistaprincipal.list;
-		modelo.cargar(lista);
+		listapr = vista.vistaprincipal.list;
+		modelo.cargar(listapr);
+		
+		listarep = vista.vistalistareproduccion.ListaAleatoria;
 	}
 	
 
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-			if(vista.vistag.vistaprincipal.BotonPlay == e.getSource()){
+			if(vista.vistaprincipal.BotonPlay == e.getSource()){
+				miObservador.setPanel(1);
 				modelo.play();
+				
+				
+				
 		}
-			if(vista.vistag.vistaprincipal.BotonPause== e.getSource()){
+			if(vista.vistaprincipal.BotonPause== e.getSource()){
+				miObservador.setPanel(2);
 				modelo.pause();
+				
 				}
-			if(vista.vistag.vistaprincipal.BotonStop == e.getSource()){
-				System.out.println("Toque stop");
+			if(vista.vistaprincipal.BotonStop == e.getSource()){
+				miObservador.setPanel(2);
 				modelo.stop();
 			}
-			if(vista.vistag.vistaprincipal.BotonAdelante== e.getSource()){
+			if(vista.vistaprincipal.BotonAdelante== e.getSource()){
+				miObservador.setPanel(1);
 				modelo.adelante();
 			}
-			if(vista.vistag.vistaprincipal.BotonAtras == e.getSource()){
+			if(vista.vistaprincipal.BotonAtras == e.getSource()){
 				modelo.atras();
+				miObservador.setPanel(1);
 			}
 			
-			if(vista.vistag.vistaprincipal.list == e.getSource()){
+			if(vista.vistaprincipal.list == e.getSource()){
+				miObservador.setPanel(2);
 				modelo.stop();
+				miObservador.setPanel(1);
+				
 				modelo.play();
 			}
 			
-			if(vista.vistag.vistaprincipal.SeleccionCarpeta == e.getSource()){
-				modelo.seleccioncarpeta(lista);
+			if(vista.vistaprincipal.SeleccionCarpeta == e.getSource()){
+				modelo.stop();
+				miObservador.setPanel(2);
+				modelo.seleccioncarpeta(listapr);
+			}
+			
+			if(vista.vistaprincipal.ListaReproduccion == e.getSource()){
+				miObservador.setPanel(3);
+			}
+			
+			if(vista.vistaprincipal.AgregarListaReproduccion == e.getSource()){
+				modelo.agregarLista(listapr.getSelectedItem(), listarep);
+			}
+			
+			
+			
+			
+			if(vista.vistalistareproduccion.BotonVolver == e.getSource()){
+				miObservador.setPanel(4);
+			}
+			
+			if(vista.vistalistareproduccion.BotonPlay == e.getSource()){
+				miObservador.setPanel(1);
+				modelo.play();
+			}
+			
+			if(vista.vistalistareproduccion.BotonPause == e.getSource()){
+				miObservador.setPanel(2);
+				modelo.pause();
+			}
+			
+			if(vista.vistalistareproduccion.BotonBorrar == e.getSource()){
+				modelo.borrar(listarep.getSelectedItem());
 			}
 	}
 	
@@ -98,7 +164,34 @@ public class Controlador implements ActionListener {
 	 }
 
 
-	 
+	 MouseListener ml=new MouseAdapter() {
+		   
+		   @Override
+		   public void mouseReleased(MouseEvent arg0) {
+		    
+		   }
+		   
+		   @Override
+		   public void mousePressed(MouseEvent arg0) {
+		    
+		   }
+		   
+		   @Override
+		   public void mouseExited(MouseEvent arg0) {
+		    
+		   }
+		   
+		   @Override
+		   public void mouseEntered(MouseEvent arg0) {
+		    
+		   }
+		   
+		   @Override
+		   public void mouseClicked(MouseEvent arg0) {
+			   System.out.println("Toque " + listapr.getSelectedItem());
+		    
+		   }
+		};
 	
 	
 	
