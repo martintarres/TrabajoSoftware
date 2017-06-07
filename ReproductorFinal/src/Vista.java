@@ -7,25 +7,25 @@ public class Vista extends JFrame implements Observer {
 
 	
 	ClaseObservador miObservador;
-	ClaseObservador miObser;
+	
 	int seleccion;
 	VistaPrincipal vistaprincipal;
 	VistaListaReproduccion vistalistareproduccion;
 		
-		public Vista(ClaseObservador observador, ClaseObservador observador1){
+		public Vista(ClaseObservador observador){
 			miObservador=observador;
-			miObser=observador1;
+		
 			
 			setTitle("Reproductor Musical");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 450, 300);
 			setVisible(true);
 			
-			vistaprincipal= new VistaPrincipal(observador);
-			observador.addObserver(vistaprincipal);
+			vistaprincipal= new VistaPrincipal(miObservador);
+			miObservador.addObserver(vistaprincipal);
 			
-			vistalistareproduccion = new VistaListaReproduccion(observador);
-			observador.addObserver(vistalistareproduccion);
+			vistalistareproduccion = new VistaListaReproduccion(miObservador);
+			miObservador.addObserver(vistalistareproduccion);
 			
 			miObservador.setVista(vistaprincipal.contentPane);
 			setContentPane(miObservador.getVista());
@@ -39,8 +39,9 @@ public class Vista extends JFrame implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		seleccion=miObservador.getPanelSeleccionado();
-		
+		/*seleccion=miObservador.getPanelSeleccionado();
+	//	seleccion=miObser.getPanelSeleccionado();
+		System.out.println("en vista me llego " +seleccion  );*/
 		if(seleccion == 0 ){
 	
 			setContentPane(miObservador.getVista());
@@ -48,7 +49,7 @@ public class Vista extends JFrame implements Observer {
 			setVisible(true);
 		}
 		
-	
+		setContentPane(miObservador.getVista());
 
 		}
 	

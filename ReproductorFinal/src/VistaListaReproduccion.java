@@ -88,6 +88,7 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		seleccion=miObservador.getPanelSeleccionado();
+		System.out.println("Notifico en vistasecundaira con" + seleccion);
 		
 		if(seleccion == 3){
 			miObservador.setVista(contentPane);
@@ -97,14 +98,14 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		if(seleccion ==1 ){
 			contentPane.remove(BotonPlay);
 			contentPane.add(BotonPause);
-			miObservador.setPanel(0);
+			miObservador.notifyObservers();
 			
 		}
 		
 		if ( seleccion == 2){
 			contentPane.remove(BotonPause);
 			contentPane.add(BotonPlay);
-			miObservador.setPanel(0);
+			miObservador.notifyObservers();
 			
 		}
 		

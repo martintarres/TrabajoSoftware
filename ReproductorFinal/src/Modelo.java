@@ -5,6 +5,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JSlider;
 
+import javazoom.jlgui.basicplayer.BasicController;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
@@ -52,6 +53,9 @@ public class Modelo {
 	public void play(){
 				unir= path.concat("\\" + listapr.getSelectedItem());
 				archivo = new File ( unir);
+				
+				
+				
 				if(player.getStatus()==-1 ||player.getStatus()== 2){
 					
 					try {
@@ -197,5 +201,34 @@ public class Modelo {
 	public void borrar(String archivo){
 		listarep.remove(archivo);
 	}
+	
+	public void adelanterep(){
+		listarep.select((listarep.getSelectedIndex()+1));
+		unir = "C:\\Users\\marti\\Music\\" + listarep.getSelectedItem();
+		try {
+			player.stop();
+			player.open(new File(unir));
+			player.play();
+		} catch (BasicPlayerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void atrasrep(){
+		
+		listarep.select((listarep.getSelectedIndex()-1));
+		unir = "C:\\Users\\marti\\Music\\" + listarep.getSelectedItem();
+		try {
+			player.stop();
+			player.open(new File(unir));
+			player.play();
+		} catch (BasicPlayerException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	
+	
 
 }

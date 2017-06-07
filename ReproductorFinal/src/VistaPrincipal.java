@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JProgressBar;
+import java.awt.Component;
 
 
 
@@ -32,9 +34,9 @@ public class VistaPrincipal extends JFrame implements Observer {
 	JButton BotonPlay;
 	JButton BotonPause;
 	JButton SeleccionCarpeta;
-	JSlider AvanceCancion;
 	JButton ListaReproduccion;
 	JButton AgregarListaReproduccion;
+	JProgressBar BarraProgreso;
 	
 		public VistaPrincipal(ClaseObservador observador){
 			
@@ -93,10 +95,6 @@ public class VistaPrincipal extends JFrame implements Observer {
 			SeleccionCarpeta.setBounds(256, 11, 35, 23);
 			contentPane.add(SeleccionCarpeta);
 			
-			AvanceCancion = new JSlider();
-			AvanceCancion.setBounds(34, 235, 353, 26);
-			contentPane.add(AvanceCancion);
-			
 			ListaReproduccion = new JButton("Lista");
 			ListaReproduccion.setBounds(335, 205, 70, 23);
 			contentPane.add(ListaReproduccion);
@@ -105,24 +103,29 @@ public class VistaPrincipal extends JFrame implements Observer {
 			AgregarListaReproduccion.setBounds(301, 11, 35, 23);
 			contentPane.add(AgregarListaReproduccion);
 			
+			BarraProgreso = new JProgressBar();
+			BarraProgreso.setBounds(36, 236, 304, 14);
+			contentPane.add(BarraProgreso);
+			
 			
 		}
 
 		@Override
 		public void update(Observable o, Object arg) {
 			seleccion=miObservador.getPanelSeleccionado();
+			System.out.println("Notifico en vistaprinciapl");
 			
 			if(seleccion ==1 ){
 				contentPane.remove(BotonPlay);
 				contentPane.add(BotonPause);
-				miObservador.setPanel(0);
+				miObservador.notifyObservers();
 				
 			}
 			
 			if ( seleccion == 2){
 				contentPane.remove(BotonPause);
 				contentPane.add(BotonPlay);
-				miObservador.setPanel(0);
+				miObservador.notifyObservers();
 				
 			}
 			

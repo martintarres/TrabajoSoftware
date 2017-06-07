@@ -20,14 +20,14 @@ public class Controlador implements ActionListener {
 	Vista vista;
 	List listapr;
 	ClaseObservador miObservador;
-	ClaseObservador miObser;
+
 	
 	List listarep;
 	
 	public Controlador(Modelo modelo, Vista vista){
 		
 		miObservador= vista.miObservador;
-		miObser=vista.miObser;
+		
 		
 		this.modelo=modelo;
 		this.vista=vista;
@@ -47,10 +47,14 @@ public class Controlador implements ActionListener {
 		
 		
 		
+		
 		vista.vistalistareproduccion.BotonVolver.addActionListener(this);
 		vista.vistalistareproduccion.BotonPlay.addActionListener(this);
 		vista.vistalistareproduccion.BotonPause.addActionListener(this);
 		vista.vistalistareproduccion.BotonBorrar.addActionListener(this);
+		vista.vistalistareproduccion.BotonStop.addActionListener(this);
+		vista.vistalistareproduccion.BotonAdelante.addActionListener(this);
+		vista.vistalistareproduccion.BotonAtras.addActionListener(this);
 		
 		
 		
@@ -112,6 +116,7 @@ public class Controlador implements ActionListener {
 			}
 			
 			if(vista.vistaprincipal.ListaReproduccion == e.getSource()){
+				System.out.println("Toque ir a lista reprodiccuion");
 				miObservador.setPanel(3);
 			}
 			
@@ -138,6 +143,21 @@ public class Controlador implements ActionListener {
 			
 			if(vista.vistalistareproduccion.BotonBorrar == e.getSource()){
 				modelo.borrar(listarep.getSelectedItem());
+			}
+			
+			if(vista.vistalistareproduccion.BotonStop == e.getSource()){
+				miObservador.setPanel(2);
+				modelo.stop();
+			}
+			
+			if(vista.vistalistareproduccion.BotonAdelante == e.getSource()){
+				miObservador.setPanel(1);
+				modelo.adelanterep();
+			}
+			
+			if(vista.vistalistareproduccion.BotonAtras == e.getSource()){
+				modelo.atrasrep();
+				miObservador.setPanel(1);
 			}
 	}
 	
@@ -168,27 +188,27 @@ public class Controlador implements ActionListener {
 		   
 		   @Override
 		   public void mouseReleased(MouseEvent arg0) {
-		    
+			  
 		   }
 		   
 		   @Override
 		   public void mousePressed(MouseEvent arg0) {
-		    
+			   
 		   }
 		   
 		   @Override
 		   public void mouseExited(MouseEvent arg0) {
-		    
+			   
 		   }
 		   
 		   @Override
 		   public void mouseEntered(MouseEvent arg0) {
-		    
+			   
 		   }
 		   
 		   @Override
 		   public void mouseClicked(MouseEvent arg0) {
-			   System.out.println("Toque " + listapr.getSelectedItem());
+			
 		    
 		   }
 		};
