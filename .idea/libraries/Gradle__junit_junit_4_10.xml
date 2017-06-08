@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: junit:junit:4.10">
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/Cannot resolve external dependency junit:junit:4.10 because no repositories are defined." />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
