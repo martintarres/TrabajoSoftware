@@ -115,7 +115,7 @@ public class Modelo {
 	public void stop(){
 		try {
 			player.stop();
-			System.out.println("Soy status stop " + player.getStatus());
+			//System.out.println("Soy status stop " + player.getStatus());
 		} catch (BasicPlayerException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
