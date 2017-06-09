@@ -120,14 +120,14 @@ public class VistaPrincipal extends JFrame implements Observer {
 			if(seleccion ==1 ){
 				contentPane.remove(BotonPlay);
 				contentPane.add(BotonPause);
-				miObservador.notifyObservers();
+				o.notifyObservers();
 				
 			}
 			
 			if ( seleccion == 2){
 				contentPane.remove(BotonPause);
 				contentPane.add(BotonPlay);
-				miObservador.notifyObservers();
+				o.notifyObservers();
 				
 			}
 			

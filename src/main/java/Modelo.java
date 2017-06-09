@@ -56,9 +56,10 @@ public class Modelo {
 	
 	public void play(){
 				unir= path.concat("\\" + listapr.getSelectedItem());
+				
 				archivo = new File ( unir);
 				
-				
+				System.out.println("soy archivo1 " + archivo);
 				
 				if(player.getStatus()==-1 ||player.getStatus()== 2){
 					
@@ -76,7 +77,9 @@ public class Modelo {
 			if(player.getStatus()==0 ){
 		try {
 			player.open(new File(unir));
+			
 			player.play();
+			System.out.println("Soy status play " + player.getStatus());
 		} catch (BasicPlayerException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -88,6 +91,7 @@ public class Modelo {
 			
 				try {
 					player.resume();
+					System.out.println("Soy status resume " + player.getStatus());
 				} catch (BasicPlayerException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -101,6 +105,7 @@ public class Modelo {
 	public void pause(){
 		try {
 			player.pause();
+			System.out.println("soy status pausa " + player.getStatus());
 		} catch (BasicPlayerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,6 +115,7 @@ public class Modelo {
 	public void stop(){
 		try {
 			player.stop();
+			System.out.println("Soy status stop " + player.getStatus());
 		} catch (BasicPlayerException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

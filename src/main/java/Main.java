@@ -17,13 +17,6 @@ public class Main {
 		
 		observador.addObserver(vista);
 		
-		
-		/*
-		ClaseObservador observador=new ClaseObservador();
-		
-		VistaG vistag= new VistaG(observador);
-		observador.addObserver(vista);
-		*/
 
 	}
 
