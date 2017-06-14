@@ -1,5 +1,7 @@
 
 
+import  java.net.URL;
+
 import java.awt.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -52,9 +54,11 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		BotonAleatorio = new JButton();
 		BotonAleatorio.setBounds(335, 227, 70, 23);
 		contentPane.add(BotonAleatorio);
-		ImageIcon alea= new ImageIcon("C:\\Users\\marti\\Desktop\\TrabajoSoftware\\alea.PNG"); 
+		ImageIcon alea= new ImageIcon(getClass().getResource("alea.png").getPath());
 		BotonAleatorio.setIcon(alea);
-		
+
+
+
 		BotonAdelante = new JButton(">>");
 		BotonAdelante.setBounds(252, 227, 70, 23);
 		contentPane.add(BotonAdelante);
@@ -82,7 +86,7 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		BotonVolver = new JButton();
 		BotonVolver.setBounds(25, 11, 96, 23);
 		contentPane.add(BotonVolver);
-		ImageIcon volver= new ImageIcon("C:\\Users\\marti\\Desktop\\TrabajoSoftware\\lista.PNG");
+		ImageIcon volver= new ImageIcon(getClass().getResource("lista.png").getPath());
 		BotonVolver.setIcon(volver);
 		
 		BotonBorrar = new JButton("Borrar");
