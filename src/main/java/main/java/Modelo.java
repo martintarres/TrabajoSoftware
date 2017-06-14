@@ -24,6 +24,7 @@ public class Modelo {
 	File folder;
 	File archivo;
 	List listarep;
+	private static Modelo uniqueinstance=null;
 	
 	public void iniciarm(){
 		player= new BasicPlayer();
@@ -40,7 +41,15 @@ public class Modelo {
 		}
 
 	}
-	
+
+	public static Modelo getInstance(){
+		if (uniqueinstance == null){
+			uniqueinstance = new Modelo();
+		}
+		return uniqueinstance;
+	}
+
+
 	public void cargar(List listapr){
 		
 		
