@@ -6,6 +6,7 @@ import java.awt.TextField;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -61,7 +62,7 @@ public class VistaPrincipal extends JFrame implements Observer {
 			contentPane.add(BuscarCancion);
 			
 			BotonAdelante = new JButton(">>");
-			BotonAdelante.setBounds(252, 205, 70, 23);
+			BotonAdelante.setBounds(252, 227, 70, 23);
 			contentPane.add(BotonAdelante);
 			
 			BarraVolumen = new JSlider();
@@ -72,12 +73,12 @@ public class VistaPrincipal extends JFrame implements Observer {
 			
 			
 			BotonAtras = new JButton("<<");
-			BotonAtras.setBounds(12, 205, 70, 23);
+			BotonAtras.setBounds(10, 227, 70, 23);
 			contentPane.add(BotonAtras);
 			
 			
 			BotonStop = new JButton("Stop");
-			BotonStop.setBounds(172, 205, 70, 23);
+			BotonStop.setBounds(172, 227, 70, 23);
 			contentPane.add(BotonStop);
 			
 			
@@ -86,28 +87,34 @@ public class VistaPrincipal extends JFrame implements Observer {
 			contentPane.add(TextoBuscar);
 			
 			BotonPlay = new JButton("Play");
-			BotonPlay.setBounds(92, 205, 70, 23);
+			BotonPlay.setBounds(90, 227, 70, 23);
 			contentPane.add(BotonPlay);
 			
 			BotonPause = new JButton("||");
-			BotonPause.setBounds(92, 205, 70, 23);
+			BotonPause.setBounds(90, 227, 70, 23);
 			//contentPane.add(BotonPause);
 			
-			SeleccionCarpeta = new JButton("Seleccion carpeta");
+			SeleccionCarpeta = new JButton();
 			SeleccionCarpeta.setBounds(256, 11, 35, 23);
 			contentPane.add(SeleccionCarpeta);
+			ImageIcon selec= new ImageIcon("C:\\Users\\marti\\Desktop\\TrabajoSoftware\\folder.PNG"); 
+			SeleccionCarpeta.setIcon(selec);
 			
-			ListaReproduccion = new JButton("Lista");
-			ListaReproduccion.setBounds(335, 205, 70, 23);
+			ListaReproduccion = new JButton();
+			ListaReproduccion.setBounds(335, 227, 70, 23);
 			contentPane.add(ListaReproduccion);
+			ImageIcon list= new ImageIcon("C:\\Users\\marti\\Desktop\\TrabajoSoftware\\lista.PNG"); 
+			ListaReproduccion.setIcon(list);
 			
-			AgregarListaReproduccion = new JButton("Agregar Lista");
+			AgregarListaReproduccion = new JButton();
 			AgregarListaReproduccion.setBounds(301, 11, 35, 23);
 			contentPane.add(AgregarListaReproduccion);
+			ImageIcon agreg= new ImageIcon("C:\\Users\\marti\\Desktop\\TrabajoSoftware\\mas.PNG"); 
+			AgregarListaReproduccion.setIcon(agreg);
 			
 			BarraProgreso = new JProgressBar();
 			BarraProgreso.setBounds(36, 236, 304, 14);
-			contentPane.add(BarraProgreso);
+			//contentPane.add(BarraProgreso);
 			
 			
 		}
@@ -120,14 +127,14 @@ public class VistaPrincipal extends JFrame implements Observer {
 			if(seleccion ==1 ){
 				contentPane.remove(BotonPlay);
 				contentPane.add(BotonPause);
-				o.notifyObservers();
+				miObservador.notifyObservers();
 				
 			}
 			
 			if ( seleccion == 2){
 				contentPane.remove(BotonPause);
 				contentPane.add(BotonPlay);
-				o.notifyObservers();
+				miObservador.notifyObservers();
 				
 			}
 			

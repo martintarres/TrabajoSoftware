@@ -57,6 +57,7 @@ public class Controlador implements ActionListener {
 		vista.vistalistareproduccion.BotonStop.addActionListener(this);
 		vista.vistalistareproduccion.BotonAdelante.addActionListener(this);
 		vista.vistalistareproduccion.BotonAtras.addActionListener(this);
+		vista.vistalistareproduccion.BarraVolumen.addChangeListener(new SliderListener());
 		
 		
 		

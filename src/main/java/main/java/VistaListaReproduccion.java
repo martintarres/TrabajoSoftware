@@ -12,6 +12,7 @@ import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class VistaListaReproduccion extends JFrame implements Observer {
@@ -47,9 +48,12 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		ListaAleatoria.setBounds(14, 50, 332, 166);
 		contentPane.add(ListaAleatoria);
 		
-		BotonAleatorio = new JButton("Aleatorio");
+		
+		BotonAleatorio = new JButton();
 		BotonAleatorio.setBounds(335, 227, 70, 23);
 		contentPane.add(BotonAleatorio);
+		ImageIcon alea= new ImageIcon("C:\\Users\\marti\\Desktop\\TrabajoSoftware\\alea.PNG"); 
+		BotonAleatorio.setIcon(alea);
 		
 		BotonAdelante = new JButton(">>");
 		BotonAdelante.setBounds(252, 227, 70, 23);
@@ -58,7 +62,7 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		BarraVolumen = new JSlider();
 		BarraVolumen.setMaximum(141);
 		BarraVolumen.setOrientation(SwingConstants.VERTICAL);
-		BarraVolumen.setBounds(356, 11, 78, 183);
+		BarraVolumen.setBounds(346, 11, 78, 183);
 		contentPane.add(BarraVolumen);
 		
 		
@@ -75,9 +79,11 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		BotonPlay.setBounds(90, 227, 70, 23);
 		contentPane.add(BotonPlay);
 		
-		BotonVolver = new JButton("Volver");
+		BotonVolver = new JButton();
 		BotonVolver.setBounds(25, 11, 96, 23);
 		contentPane.add(BotonVolver);
+		ImageIcon volver= new ImageIcon("C:\\Users\\marti\\Desktop\\TrabajoSoftware\\lista.PNG");
+		BotonVolver.setIcon(volver);
 		
 		BotonBorrar = new JButton("Borrar");
 		BotonBorrar.setBounds(157, 11, 89, 23);

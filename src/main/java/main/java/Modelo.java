@@ -27,8 +27,18 @@ public class Modelo {
 	
 	public void iniciarm(){
 		player= new BasicPlayer();
-		path= "C:\\Users\\marti\\Music";
-		folder =new File (path);
+
+		JFileChooser fc=new JFileChooser();
+		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+		Component contentPane = null;
+		int ventanaseleccionada = fc.showOpenDialog(contentPane);
+
+		if(ventanaseleccionada== JFileChooser.APPROVE_OPTION) {
+			folder = fc.getSelectedFile();
+			path = folder.getAbsolutePath();
+		}
+
 	}
 	
 	public void cargar(List listapr){
