@@ -12,8 +12,9 @@ import javax.swing.JList;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-
+															// Esta es la clase que sirve para controlar todas las acciones
+															// que va a realizar el programa, y lo que hace es llamar
+															// a los metodos que estan en la clase modelo
 public class Controlador implements ActionListener {
 
 	Modelo modelo;
@@ -24,13 +25,17 @@ public class Controlador implements ActionListener {
 	
 	List listarep;
 	
-	public Controlador(Modelo modelo, Vista vista){
+	public Controlador(Modelo modelo, Vista vista){				// El constructor de la clase controlador
 		
 		miObservador= vista.miObservador;
 		
 		
 		this.modelo=modelo;
 		this.vista=vista;
+
+		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
+			botones pertenencientes a la clase principal
+		 */
 		
 		vista.vistaprincipal.list.addActionListener(this);
 		vista.vistaprincipal.BuscarCancion.addTextListener(new MyTextListener());
@@ -45,7 +50,9 @@ public class Controlador implements ActionListener {
 		vista.vistaprincipal.AgregarListaReproduccion.addActionListener(this);
 		vista.vistaprincipal.list.addMouseListener(ml);
 		
-		
+		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
+			botones pertenencientes a la clase lista de reproduccion
+		 */
 		
 		
 		vista.vistalistareproduccion.BotonVolver.addActionListener(this);
@@ -62,18 +69,25 @@ public class Controlador implements ActionListener {
 		
 	}
 	
+	/*El metodo inicial lo que hace es crear dos objeto de tipo lista, uno que va a pertenecer
+	 	a la lista principal, y otro que va a pertenecer a la lista de reproduccion, que
+	 	es donde vamos a cargar nuestras canciones.
 
+				 */
 	
 	public void iniciar(){
 		modelo.iniciarm();
 		
 		listapr = vista.vistaprincipal.list;
 		modelo.cargar(listapr);
-		
+
 		listarep = vista.vistalistareproduccion.ListaAleatoria;
 	}
-	
 
+
+	/*	Estos son los observadores de cada boton, que nos indican a que metodos llamar
+		Estos son los pertenecientes a la clase principal
+	 */
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -124,8 +138,10 @@ public class Controlador implements ActionListener {
 			if(vista.vistaprincipal.AgregarListaReproduccion == e.getSource()){
 				modelo.agregarLista(listapr.getSelectedItem(), listarep);
 			}
-			
-			
+
+			/*	Estos son los observadores de cada boton, que nos indican a que metodos llamar
+				Estos son los pertenecientes a la clase lista de reproduccion
+			 */
 			
 			
 			if(vista.vistalistareproduccion.BotonVolver == e.getSource()){

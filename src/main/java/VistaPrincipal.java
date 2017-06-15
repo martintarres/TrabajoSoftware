@@ -18,9 +18,8 @@ import javax.swing.JProgressBar;
 
 public class VistaPrincipal extends JFrame implements Observer {
 	
-	ClaseObservador miObservador;
-	int seleccion;
-	
+	public ClaseObservador miObservador;
+	int seleccion;										//En esta clase se crea la vista principal
 	JPanel contentPane;
 	List list;
 	TextField BuscarCancion;
@@ -105,6 +104,7 @@ public class VistaPrincipal extends JFrame implements Observer {
 			AgregarListaReproduccion.setBounds(301, 11, 35, 23);
 			contentPane.add(AgregarListaReproduccion);
 			ImageIcon agreg= new ImageIcon(getClass().getResource("mas.png").getPath());
+			System.out.println(getClass().getResource("mas.png").getPath());
 			AgregarListaReproduccion.setIcon(agreg);
 			
 			BarraProgreso = new JProgressBar();
@@ -114,26 +114,26 @@ public class VistaPrincipal extends JFrame implements Observer {
 			
 		}
 
-		@Override
+		@Override													// Esta es la parte que implementa los observer
 		public void update(Observable o, Object arg) {
-			seleccion=miObservador.getPanelSeleccionado();
+			seleccion=miObservador.getPanelSeleccionado();			// Se recibe el int que seteamos en los observer
 			System.out.println("Notifico en vistaprinciapl");
 			
 			if(seleccion ==1 ){
-				contentPane.remove(BotonPlay);
+				contentPane.remove(BotonPlay);						// Si seleccionamos uno, queda visible el boton de pausa
 				contentPane.add(BotonPause);
 				miObservador.notifyObservers();
 				
 			}
 			
-			if ( seleccion == 2){
+			if ( seleccion == 2){									// Si seleccionamos 2, queda visible el boton de play
 				contentPane.remove(BotonPause);
 				contentPane.add(BotonPlay);
 				miObservador.notifyObservers();
 				
 			}
 			
-			if(seleccion == 4){
+			if(seleccion == 4){										// El 4 es para informar el cambio de vista a la principal
 				miObservador.setVista(contentPane);
 				miObservador.setPanel(0);
 			}

@@ -1,6 +1,6 @@
 
-
-import  java.net.URL;
+														// En esta clase se crea la vista que pertenece a la lista de
+import  java.net.URL;									//	reproduccion
 
 import java.awt.List;
 import java.util.Observable;
@@ -97,17 +97,17 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		BotonPause.setBounds(90, 227, 70, 23);
 	}
 
-	@Override
+	@Override														// Esta es la parte que implementa los observer
 	public void update(Observable o, Object arg) {
-		seleccion=miObservador.getPanelSeleccionado();
+		seleccion=miObservador.getPanelSeleccionado();				// Se recibe el int que seteamos en los observer
 		System.out.println("Notifico en vistasecundaira con" + seleccion);
 		
-		if(seleccion == 3){
-			miObservador.setVista(contentPane);
+		if(seleccion == 3){											// el 3 nos dice que debemos cambiar a la vista de
+			miObservador.setVista(contentPane);						// la lista de reproduccion
 			miObservador.setPanel(0);
 		}
 
-		if(seleccion ==1 ){
+		if(seleccion ==1 ){											// Si seleccionamos uno, queda visible el boton de pausa
 			contentPane.remove(BotonPlay);
 			contentPane.add(BotonPause);
 			miObservador.notifyObservers();
@@ -115,7 +115,7 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		}
 		
 		if ( seleccion == 2){
-			contentPane.remove(BotonPause);
+			contentPane.remove(BotonPause);							// Si seleccionamos 2, queda visible el boton de play
 			contentPane.add(BotonPlay);
 			miObservador.notifyObservers();
 			

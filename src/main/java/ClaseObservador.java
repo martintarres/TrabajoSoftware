@@ -12,24 +12,22 @@ public class ClaseObservador extends Observable {
 		
 	}
 	
-	public void setPanel(int contentPaneSeleccionado){
-		this.contentPaneSeleccionado=contentPaneSeleccionado;
-		setChanged();
+	public void setPanel(int contentPaneSeleccionado){					// Este metodo sirve para setear
+		this.contentPaneSeleccionado=contentPaneSeleccionado;			//	el panel que estamos viendo actualmente
+		setChanged();													// y notifica a los observers
 	    notifyObservers();
 	
 	}
 	
-	public int getPanelSeleccionado() {
+	public int getPanelSeleccionado() {								// Se pasa un entero para saber a que
+																	// panel nos estamos refiriendo
 		return contentPaneSeleccionado;
-	}
+	}	//
 
-	public void setVista(JPanel panel) {
-		
+	public void setVista(JPanel panel) {							// en los observers se carga el panel que vamos a ver
+
 		this.panel=panel;
-		//notifyObservers();
 
-	
-		
 	}
 	public JPanel getVista(){
 		//notifyObservers();
