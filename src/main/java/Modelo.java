@@ -1,28 +1,42 @@
 import java.awt.Component;
 import java.awt.List;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Random;
 
+import javax.naming.ldap.BasicControl;
 import javax.swing.JFileChooser;
 import javax.swing.JSlider;
 
-import javazoom.jlgui.basicplayer.BasicController;
-import javazoom.jlgui.basicplayer.BasicPlayer;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
+import javazoom.jlgui.basicplayer.*;
 
-	/*	En la clase modelo se encuentra todo el codigo que accen las acciones
-	 */
-public class Modelo {
+/*	En la clase modelo se encuentra todo el codigo que accen las acciones
+ */
+public class Modelo extends Controlador implements BasicPlayerListener {
 
 		String path;
 		File files = null;
-		static BasicPlayer player;
+		BasicPlayer player;
 		List listapr;
 		String unir;
 		File[] listFiles;
 		File folder;
 		File archivo;
 		List listarep;
-
+		ArrayList <String> listarepro;
+		File reproducirListaRepr;
+		Random numeroalea;
+		int terminoInicial;
+		int terminoFinal;
+		int resultado;
+		double bytesLength;
+		float progressUpdate;
+		int progressNow;
+		boolean alea;
+		boolean termine;
+		boolean enPrincipal;
+		Controlador controlador;
 
 		public void iniciarm() {
 			player = new BasicPlayer();                                // Creamos un objeto de la clase BasicPlayer
@@ -37,7 +51,13 @@ public class Modelo {
 				folder = fc.getSelectedFile();
 				path = folder.getAbsolutePath();                        // aca obtenemos el path de la carpeta seleccionada
 			}
-
+			listarepro= new ArrayList<String>();
+			numeroalea = new Random();
+			terminoInicial=0;
+			player.addBasicPlayerListener(this);
+			alea = false;
+			termine=false;
+			enPrincipal=true;
 		}
 
 		/*
@@ -72,12 +92,14 @@ public class Modelo {
 		principio de la cancion, si no que desde donde habia quedado
 	 */
 
+
 		public void play() {
-			unir = path.concat("\\" + listapr.getSelectedItem());
+			//unir = path.concat("\\" + listapr.getSelectedItem());
 
-			archivo = new File(unir);
 
-			System.out.println("soy archivo1 " + archivo);
+			archivo = new File(unir(listapr.getSelectedItem()));
+
+			System.out.println("soy archivo1 " + archivo.getAbsolutePath());
 
 			if (player.getStatus() == -1 || player.getStatus() == 2) {
 
@@ -118,6 +140,16 @@ public class Modelo {
 				}
 			}
 		}
+		/*
+
+		El metodo unir me crea el path completo para poder reproducir
+		 */
+
+		public String unir(String seleccion){
+			unir = path.concat("\\" + seleccion);
+			return unir;
+
+		}
 
 	/*
 		El metodo pause, pausa la reproduccion de la cancion
@@ -153,10 +185,10 @@ public class Modelo {
 
 	public void adelante(){
 		listapr.select((listapr.getSelectedIndex()+1));
-		unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
+		//unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
 		try {
 			player.stop();
-			player.open(new File(unir));
+			player.open(new File(unir(listapr.getSelectedItem())));
 			player.play();
 		} catch (BasicPlayerException e) {
 			// TODO Auto-generated catch block
@@ -170,10 +202,10 @@ public class Modelo {
 	public void atras(){
 		
 		listapr.select((listapr.getSelectedIndex()-1));
-		unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
+		//unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
 		try {
 			player.stop();
-			player.open(new File(unir));
+			player.open(new File(unir(listapr.getSelectedItem())));
 			player.play();
 		} catch (BasicPlayerException e1) {
 			// TODO Auto-generated catch block
@@ -251,7 +283,11 @@ public class Modelo {
 			this.listarep=listarep;
 			
 			listarep.add(archi);
-			
+			String devuelvo;
+			devuelvo=unir(string);
+			listarepro.add(devuelvo);
+			terminoFinal= listarepro.size();
+
 	}
 		/*
 		aca borramos los archivos de nuestra lista de reproduccion
@@ -260,36 +296,98 @@ public class Modelo {
 	public void borrar(String archivo){
 
 		listarep.remove(archivo);
+		for(int i=0; i<listarepro.size(); i++){
+			if(listarepro.get(i).contains(listarep.getSelectedItem())) {
+				listarepro.remove(listarepro.get(i));
+
+			}
+		}
+		System.out.println("tengo " + listarepro.size()+ " archivos");
 	}
 
 	
 	public void adelanterep(){
 		listarep.select((listarep.getSelectedIndex()+1));
-		unir = "C:\\Users\\marti\\Music\\" + listarep.getSelectedItem();
-		try {
-			player.stop();
-			player.open(new File(unir));
-			player.play();
-		} catch (BasicPlayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		verListaRepr();
+
+
 	}
 	public void atrasrep(){
 		
 		listarep.select((listarep.getSelectedIndex()-1));
-		unir = "C:\\Users\\marti\\Music\\" + listarep.getSelectedItem();
-		try {
-			player.stop();
-			player.open(new File(unir));
-			player.play();
-		} catch (BasicPlayerException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		verListaRepr();
+	}
+
+		/* En este metodo creamos un arrayList con los archivos que cargamos a nuestra lista de
+		reproduccion con el path completo, porque si no lo perdiamos
+		 */
+	public void verListaRepr(){
+
+
+		for(int i=0; i<listarepro.size(); i++){
+			if(listarepro.get(i).contains(listarep.getSelectedItem())) {
+				reproducirListaRepr = new File(listarepro.get(i));
+				playLista(reproducirListaRepr);
+
+			}
 		}
 	}
-	
-	
-	
+
+	/* En este metodo lo que hacemos es reproducir el archivo de la lista de reproduccion
+
+	 */
+	public void playLista(File repro){
+		try {
+			player.open(repro);
+			player.play();
+		} catch (BasicPlayerException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void aleatorio(){
+
+		//System.out.println("Soy numero aleatorio " + resultado);
+		if(alea == true){
+			alea=false;
+		}
+		else{
+			alea=true;
+		}
+
+	}
+
+	public void cambiarAleatorio(){
+		resultado = (int) (numeroalea.nextDouble()* terminoFinal+ terminoInicial) ;
+		reproducirListaRepr = new File(listarepro.get(resultado));
+		playLista(reproducirListaRepr);
+
+	}
+
+	@Override
+	public void opened(Object arg0, Map arg1) {
+
+	}
+
+	@Override
+	public void progress(int bytesread, long microseconds, byte[] pcmdata, Map properties) {
+
+	}
+
+	@Override
+	public void stateUpdated(BasicPlayerEvent basicPlayerEvent) {
+
+		System.out.println("Soy estado " + basicPlayerEvent.getCode());
+		/*
+		este estado es el que necesito que cuando cambie me avise en controller porque
+		ahi se cuando una cancion termina de reproducir
+		 */
+	}
+
+	@Override
+	public void setController(BasicController basicController) {
+
+	}
+
 
 }
