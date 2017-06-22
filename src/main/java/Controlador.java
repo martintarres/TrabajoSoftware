@@ -85,7 +85,7 @@ public class Controlador implements ActionListener  {
 		modelo.iniciarm();
 		
 		listapr = vista.vistaprincipal.list;
-		modelo.cargar(listapr);
+		modelo.cargar(listapr, modelo.folder);
 
 		listarep = vista.vistalistareproduccion.ListaAleatoria;
 	}
