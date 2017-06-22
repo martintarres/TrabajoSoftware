@@ -1,6 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 /**
@@ -8,24 +11,37 @@ import static org.junit.Assert.*;
  */
 public class ModeloTest1 {
     Modelo modelo;
+    List listarepro;
+    File[] listFiles;
+    File folder;
     @Before
     public void setUp() throws Exception {
          modelo= new Modelo();
+         listarepro= new List();
+
+        folder = new File("src/main/resources");
+        listFiles = folder.listFiles();
     }
 
-    @Test
+   /* @Test
     public void iniciarm() throws Exception {
         modelo.iniciarm();
-    }
-/*
+    }*/
+
     @Test
     public void cargar() throws Exception {
+        assertEquals(0 , listarepro.getItemCount());
+        modelo.cargar(listarepro, folder);
+        assertEquals(2, listarepro.getItemCount());
+
     }
 
-    @Test
+/*    @Test
     public void play() throws Exception {
-    }
 
+
+    }
+/*
     @Test
     public void pause() throws Exception {
     }
