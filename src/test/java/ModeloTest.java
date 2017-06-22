@@ -7,7 +7,7 @@ import java.awt.*;
 import java.io.File;
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
+/*import static org.junit.Assert.assertEquals;
 
 public class ModeloTest {
 	
@@ -231,5 +231,6 @@ public class ModeloTest {
 		System.out.println(resultadoalea);
 	}*/
 
-
+/*
 }
+*/
