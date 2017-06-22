@@ -18,7 +18,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		private	List listapr;
 		private String unir;
 		private File[] listFiles;
-		private File folder;
+		public File folder;
     	private List listarep;
 		private ArrayList <String> listarepro;
 		private File reproducirListaRepr;
@@ -58,11 +58,11 @@ public class Modelo extends Controlador implements BasicPlayerListener {
             en el metodo cargar lo que hacemos es cargar todas las canciones que esten en los formatos soportados por nuestro
             reproductor, en la lista para poder ser reproducida
          */
-		void cargar(List listapr) {
+		void cargar(List listapr, File folder) {
 
 
 			this.listapr = listapr;
-
+			this.folder=folder;
 
 			listFiles = folder.listFiles();
 
@@ -263,7 +263,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 			
 				//path= path.concat("\\");
 				listapr.removeAll();
-				cargar(lista);
+				//cargar(lista);
 		}
 	}
 		/*
