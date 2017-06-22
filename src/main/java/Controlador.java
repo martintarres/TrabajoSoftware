@@ -1,39 +1,23 @@
-import javazoom.jlgui.basicplayer.BasicController;
-import javazoom.jlgui.basicplayer.BasicPlayerEvent;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
-import javazoom.jlgui.basicplayer.BasicPlayerListener;
-
-import java.awt.List;
-import java.awt.TextComponent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Map;
-
-import javax.swing.JList;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 															// Esta es la clase que sirve para controlar todas las acciones
 															// que va a realizar el programa, y lo que hace es llamar
 															// a los metodos que estan en la clase modelo
 public class Controlador implements ActionListener  {
 
-	Modelo modelo;
-	Vista vista;
+	private Modelo modelo;
+	private Vista vista;
 	private List listapr;
-	ClaseObservador miObservador;
-	boolean termino;
+	private ClaseObservador miObservador;
 
-	
-	List listarep;
+
+																private List listarep;
 	
 	Controlador(Modelo modelo, Vista vista){				// El constructor de la clase controlador
 		
@@ -43,7 +27,7 @@ public class Controlador implements ActionListener  {
 		this.modelo=modelo;
 		this.vista=vista;
 
-		termino=false;
+		/*boolean termino;*/
 
 		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
 			botones pertenencientes a la clase principal
@@ -86,7 +70,7 @@ public class Controlador implements ActionListener  {
 
 		
 	}
-	public Controlador() {
+	Controlador() {
 
 	}
 
@@ -97,7 +81,7 @@ public class Controlador implements ActionListener  {
 
 				 */
 	
-	public void iniciar(){
+	void iniciar(){
 		modelo.iniciarm();
 		
 		listapr = vista.vistaprincipal.list;
@@ -233,13 +217,13 @@ public class Controlador implements ActionListener  {
 		 
 	 }
 
-	 public void avisar(){
+	 /*public void avisar(){
 		System.out.println("soy termino " + termino);
 		termino=true;
 		System.out.println("soy termino " + termino);
 	//	modelo.adelante();
 
-	 }
+	 }*/
 
 
 }
