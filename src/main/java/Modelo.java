@@ -15,7 +15,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		private String path;
 		private	File files = null;
 		public BasicPlayer player;
-		private	List listapr;
+		public	List listapr;
 		private String unir;
 		private File[] listFiles;
 		public File folder;
@@ -233,9 +233,10 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		El meetodo buscar cancion lo que hace es buscar de acuerdo a lo que nosotros vamos escribiendo
 	 */
 
-	void buscarcancion(String s){
-		
-		listapr.removeAll();				//aca se borra toda la lista
+	void buscarcancion(String s, List listarecibida){
+
+
+		listarecibida.removeAll();				//aca se borra toda la lista
 
 		for (File listFile : listFiles) {
 			if (listFile.isFile()) {
@@ -245,7 +246,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 
 					if (files.toString().toLowerCase().contains(s)) {        // se fija si hay canciones que contengan las letras
 						//System.out.println(files.toString());			// que estamos ingresando, ignorando mayusculas
-						listapr.add(files.getName());                    // y si hay, las agrega a la lista
+						listarecibida.add(files.getName());                    // y si hay, las agrega a la lista
 
 					}
 
