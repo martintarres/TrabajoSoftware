@@ -15,9 +15,7 @@ public class Controlador implements ActionListener  {
 	private Vista vista;
 	private List listapr;
 	private ClaseObservador miObservador;
-
-
-																private List listarep;
+	private List listarep;
 	
 	Controlador(Modelo modelo, Vista vista){				// El constructor de la clase controlador
 		
