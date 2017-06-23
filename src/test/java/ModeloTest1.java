@@ -46,18 +46,24 @@ public class ModeloTest1 {
         assertEquals(-1, modelo.player.getStatus());
         modelo.play();
         assertEquals(0, modelo.player.getStatus());
-
-
     }
-/*
+
     @Test
     public void pause() throws Exception {
+        play();
+        assertEquals(0, modelo.player.getStatus());
+        modelo.pause();
+        assertEquals(1, modelo.player.getStatus());
     }
 
     @Test
     public void stop() throws Exception {
+        play();
+        assertEquals(0,modelo.player.getStatus());
+        modelo.stop();
+        assertEquals(2, modelo.player.getStatus());
     }
-
+/*
     @Test
     public void adelante() throws Exception {
     }
