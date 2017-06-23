@@ -37,7 +37,7 @@ public class ModeloTest1 {
 
     }
 
-    @Test
+  /*  @Test
     public void play() throws Exception {
         modelo.iniciarm();
         modelo.cargar(listarepro, folder);
@@ -63,11 +63,17 @@ public class ModeloTest1 {
         modelo.stop();
         assertEquals(2, modelo.player.getStatus());
     }
-/*
+*/
     @Test
     public void adelante() throws Exception {
+        modelo.iniciarm();
+        modelo.cargar(listarepro,folder);
+        listarepro.select(0);
+        assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", listarepro.getSelectedItem() );
+        modelo.adelante();
+        assertEquals("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3" , listarepro.getSelectedItem());
     }
-
+/*
     @Test
     public void atras() throws Exception {
     }
