@@ -29,14 +29,21 @@ public class ClaseObservadorTest {
 
     @Test
     public void getPanelSeleccionado() throws Exception {
+        assertEquals(0 , observador.getPanelSeleccionado());
+        contentPaneSeleccionado = 15;
+        observador.setPanel(contentPaneSeleccionado);
+        assertEquals(15, observador.getPanelSeleccionado());
     }
 
     @Test
     public void setVista() throws Exception {
+        panel = new JPanel();
+        assertEquals(null , observador.getVista());
+        observador.setVista(panel);
+        assertEquals(panel , observador.getVista());
+
     }
 
-    @Test
-    public void getVista() throws Exception {
-    }
+
 
 }
