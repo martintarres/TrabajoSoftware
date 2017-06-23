@@ -270,7 +270,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 			
 				//path= path.concat("\\");
 				listapr.removeAll();
-				//cargar(lista);
+				cargar(lista, folder);
 		}
 	}
 		/*
