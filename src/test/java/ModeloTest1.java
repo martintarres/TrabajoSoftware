@@ -1,3 +1,4 @@
+import javazoom.jlgui.basicplayer.BasicPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,10 +24,10 @@ public class ModeloTest1 {
         listFiles = folder.listFiles();
     }
 
-   /* @Test
+    @Test
     public void iniciarm() throws Exception {
         modelo.iniciarm();
-    }*/
+    }
 
     @Test
     public void cargar() throws Exception {
@@ -36,8 +37,15 @@ public class ModeloTest1 {
 
     }
 
-/*    @Test
+    @Test
     public void play() throws Exception {
+        modelo.iniciarm();
+        modelo.cargar(listarepro, folder);
+        listarepro.select(0);
+        modelo.archivo= new File(modelo.unir(listarepro.getSelectedItem()));
+        assertEquals(-1, modelo.player.getStatus());
+        modelo.play();
+        assertEquals(0, modelo.player.getStatus());
 
 
     }
