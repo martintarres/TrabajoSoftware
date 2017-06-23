@@ -14,7 +14,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 
 		private String path;
 		private	File files = null;
-		private BasicPlayer player;
+		public BasicPlayer player;
 		private	List listapr;
 		private String unir;
 		private File[] listFiles;
@@ -25,6 +25,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		private Random numeroalea;
 		private int terminoInicial;
 		private int terminoFinal;
+		public File archivo;
     //private double bytesLength;
 		//private float progressUpdate;
 		//private int progressNow;
@@ -32,19 +33,25 @@ public class Modelo extends Controlador implements BasicPlayerListener {
         boolean enPrincipal;
 
 
+
+
 		void iniciarm() {
 			player = new BasicPlayer();                                // Creamos un objeto de la clase BasicPlayer
 
-			JFileChooser fc = new JFileChooser();                            //Aca vamos a elegir de que carpeta queremos cargar
+			/*JFileChooser fc = new JFileChooser();                            //Aca vamos a elegir de que carpeta queremos cargar
 			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);        // nuestras canciones
 
 			/* Component contentPane = null; */
-			int ventanaseleccionada = fc.showOpenDialog(null);
+			/*int ventanaseleccionada = fc.showOpenDialog(null);
 
 			if (ventanaseleccionada == JFileChooser.APPROVE_OPTION) {
 				folder = fc.getSelectedFile();
 				path = folder.getAbsolutePath();                        // aca obtenemos el path de la carpeta seleccionada
-			}
+			}*/
+			//path="src/main/resources";
+			folder = new File("src/main/resources");
+			path= folder.getPath();
+			System.out.println(path);
 			listarepro= new ArrayList<>();
 			numeroalea = new Random();
 			terminoInicial=0;
@@ -92,9 +99,9 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 			//unir = path.concat("\\" + listapr.getSelectedItem());
 
 
-            File archivo = new File(unir(listapr.getSelectedItem()));
+            archivo = new File(unir(listapr.getSelectedItem()));
 
-			System.out.println("soy archivo1 " + archivo.getAbsolutePath());
+			System.out.println("soy archivo " + archivo.getAbsolutePath());
 
 			if (player.getStatus() == -1 || player.getStatus() == 2) {
 
@@ -140,7 +147,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		El metodo unir me crea el path completo para poder reproducir
 		 */
 
-		private String unir(String seleccion){
+		public String unir(String seleccion){
 			unir = path.concat("\\" + seleccion);
 			return unir;
 
