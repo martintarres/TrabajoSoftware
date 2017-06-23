@@ -212,7 +212,7 @@ public class Controlador implements ActionListener  {
 		public void textValueChanged(TextEvent e) {
 			 TextComponent tc = (TextComponent)e.getSource();
 			 String s = tc.getText();
-			 modelo.buscarcancion(s);
+			 modelo.buscarcancion(s, modelo.listapr);
 		}
 		 
 	 }
