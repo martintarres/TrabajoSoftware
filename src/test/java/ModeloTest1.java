@@ -129,11 +129,16 @@ public class ModeloTest1 {
         modelo.agregarLista(listarepro.getSelectedItem(), listareproad);
         assertEquals(2, listareproad.getItemCount());
     }
-/*
+
     @Test
     public void borrar() throws Exception {
+        agregarLista();
+        assertEquals(2, listareproad.getItemCount());
+        listareproad.select(0);
+        modelo.borrar(listareproad.getSelectedItem());
+        assertEquals(1, listareproad.getItemCount());
     }
-
+/*
     @Test
     public void adelanterep() throws Exception {
     }
