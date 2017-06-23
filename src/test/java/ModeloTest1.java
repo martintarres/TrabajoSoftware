@@ -2,6 +2,7 @@ import javazoom.jlgui.basicplayer.BasicPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
@@ -15,6 +16,7 @@ public class ModeloTest1 {
     List listarepro;
     File[] listFiles;
     File folder;
+    JSlider vol;
     @Before
     public void setUp() throws Exception {
          modelo= new Modelo();
@@ -22,6 +24,7 @@ public class ModeloTest1 {
 
         folder = new File("src/main/resources");
         listFiles = folder.listFiles();
+        vol = new JSlider();
     }
 
     @Test
@@ -73,19 +76,38 @@ public class ModeloTest1 {
         modelo.adelante();
         assertEquals("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3" , listarepro.getSelectedItem());
     }
-/*
-    @Test
-    public void atras() throws Exception {
-    }
 
     @Test
-    public void volumen() throws Exception {
+    public void atras() throws Exception {
+        modelo.iniciarm();
+        modelo.cargar(listarepro,folder);
+        listarepro.select(1);
+        assertEquals("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3" , listarepro.getSelectedItem());
+
+        modelo.atras();
+        assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", listarepro.getSelectedItem() );
+
     }
+
+   /* @Test
+    public void volumen() throws Exception {
+        modelo.iniciarm();
+        System.out.println(modelo.player.getGainValue());
+        modelo.player.setGain(vol.setValue(0.04));
+        modelo.volumen(vol);
+        System.out.println(modelo.player.getGainValue());
+    }*/
 
     @Test
     public void buscarcancion() throws Exception {
+        modelo.iniciarm();
+        modelo.cargar(listarepro,folder);
+        String busqueda = "col";
+        modelo.buscarcancion(busqueda, listarepro);
+        listarepro.select(0);
+        assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", listarepro.getSelectedItem());
     }
-
+/*
     @Test
     public void seleccioncarpeta() throws Exception {
     }
