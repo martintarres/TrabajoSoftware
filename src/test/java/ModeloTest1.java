@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 public class ModeloTest1 {
     Modelo modelo;
     List listarepro;
+    List listareproad;
     File[] listFiles;
     File folder;
     JSlider vol;
@@ -21,7 +22,7 @@ public class ModeloTest1 {
     public void setUp() throws Exception {
          modelo= new Modelo();
          listarepro= new List();
-
+         listareproad= new List();
         folder = new File("src/main/resources");
         listFiles = folder.listFiles();
         vol = new JSlider();
@@ -107,15 +108,28 @@ public class ModeloTest1 {
         listarepro.select(0);
         assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", listarepro.getSelectedItem());
     }
-/*
-    @Test
+
+   /* @Test
     public void seleccioncarpeta() throws Exception {
-    }
+        modelo.iniciarm();
+        JFileChooser fc=new JFileChooser();
+        fc.setFileSelectionMode(0);
+        //fc.getSelectedFile(new File("src/main/resources/masmusica"));
+        modelo.seleccioncarpeta(listarepro);
+    }*/
 
     @Test
     public void agregarLista() throws Exception {
+        modelo.iniciarm();
+        modelo.cargar(listarepro,folder);
+        listarepro.select(0);
+        assertEquals(0, listareproad.getItemCount());
+        modelo.agregarLista(listarepro.getSelectedItem() , listareproad);
+        assertEquals(1, listareproad.getItemCount());
+        modelo.agregarLista(listarepro.getSelectedItem(), listareproad);
+        assertEquals(2, listareproad.getItemCount());
     }
-
+/*
     @Test
     public void borrar() throws Exception {
     }
