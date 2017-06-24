@@ -41,11 +41,13 @@ public class ModeloTest1 {
 
     @Test
     public void play() throws Exception {
+
         modelo.iniciarm();
         modelo.cargar(listarepro, folder);
         listarepro.select(0);
         modelo.path = folder.getPath();
         modelo.archivo= new File(modelo.unir(listarepro.getSelectedItem()));
+        modelo.play(listarepro);
        modelo.player.open(modelo.archivo);
        assertEquals(3, modelo.player.getStatus());
         modelo.player.play();
