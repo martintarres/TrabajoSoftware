@@ -47,7 +47,7 @@ public class ModeloTest1 {
         listarepro.select(0);
         modelo.path = folder.getPath();
         modelo.archivo= new File(modelo.unir(listarepro.getSelectedItem()));
-        modelo.play(listarepro);
+       // modelo.play(listarepro);
        modelo.player.open(modelo.archivo);
        assertEquals(3, modelo.player.getStatus());
         modelo.player.play();
