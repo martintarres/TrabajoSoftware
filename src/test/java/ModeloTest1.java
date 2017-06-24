@@ -5,6 +5,7 @@ import java.awt.*;
 import java.io.File;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by martin on 22/6/2017.
@@ -48,6 +49,7 @@ public class ModeloTest1 {
         modelo.path = folder.getPath();
         modelo.archivo= new File(modelo.unir(listarepro.getSelectedItem()));
         modelo.play(listarepro);
+        assertTrue(modelo.player.getStatus() == 0);
        //modelo.player.open(modelo.archivo);
        //assertEquals(3, modelo.player.getStatus());
         //modelo.player.play();
