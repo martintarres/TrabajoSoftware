@@ -39,8 +39,8 @@ public class ModeloTest1 {
         assertEquals(2, listarepro.getItemCount());
 
     }
-
-  /*  @Test
+/*
+    @Test
     public void play() throws Exception {
 
         modelo.iniciarm();
@@ -68,7 +68,7 @@ public class ModeloTest1 {
         modelo.stop();
         assertEquals(2, modelo.player.getStatus());
     }
-*/
+
     @Test
     public void adelante() throws Exception {
         modelo.iniciarm();
@@ -79,7 +79,7 @@ public class ModeloTest1 {
         modelo.adelante();
         assertEquals("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3" , listarepro.getSelectedItem());
     }
-
+*/
     @Test
     public void atras() throws Exception {
         modelo.iniciarm();
