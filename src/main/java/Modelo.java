@@ -335,7 +335,6 @@ public class Modelo implements BasicPlayerListener {
 
 	void aleatorio(){
 
-		//System.out.println("Soy numero aleatorio " + resultado);
 		alea = !alea;
 
 	}
