@@ -99,7 +99,7 @@ public class Controlador implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 			if(vista.vistaprincipal.BotonPlay == e.getSource()){
 				miObservador.setPanel(1);
-				modelo.play();
+				modelo.play(listapr);
 				
 				
 				
@@ -127,7 +127,7 @@ public class Controlador implements ActionListener  {
 				modelo.stop();
 				miObservador.setPanel(1);
 				
-				modelo.play();
+				modelo.play(listapr);
 			}
 			
 			if(vista.vistaprincipal.SeleccionCarpeta == e.getSource()){
