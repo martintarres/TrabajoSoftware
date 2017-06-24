@@ -46,10 +46,11 @@ public class ModeloTest1 {
         listarepro.select(0);
         modelo.path = folder.getPath();
         modelo.archivo= new File(modelo.unir(listarepro.getSelectedItem()));
-        modelo.play();
+     //  modelo.player.open(modelo.archivo);
+        modelo.play(listarepro);
         assertEquals(0, modelo.player.getStatus());
     }
-
+/*
     @Test
     public void pause() throws Exception {
         play();
@@ -65,7 +66,7 @@ public class ModeloTest1 {
         modelo.stop();
         assertEquals(2, modelo.player.getStatus());
     }
-
+*/
     @Test
     public void adelante() throws Exception {
         modelo.iniciarm();
