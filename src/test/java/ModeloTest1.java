@@ -1,31 +1,29 @@
-import javazoom.jlgui.basicplayer.BasicPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by martin on 22/6/2017.
  */
 public class ModeloTest1 {
-    Modelo modelo;
-    List listarepro;
-    List listareproad;
-    File[] listFiles;
-    File folder;
-    JSlider vol;
+    private Modelo modelo;
+    private List listarepro;
+    private List listareproad;
+    /*private File[] listFiles;*/
+    private File folder;
+
     @Before
     public void setUp() throws Exception {
          modelo= new Modelo();
          listarepro= new List();
          listareproad= new List();
         folder = new File("src/main/resources");
-        listFiles = folder.listFiles();
-        vol = new JSlider();
+        /*listFiles = folder.listFiles();*/
+        /*JSlider vol = new JSlider();*/
     }
 
     @Test
@@ -41,11 +39,13 @@ public class ModeloTest1 {
 
     }
 
-  /*  @Test
+    @Test
     public void play() throws Exception {
         modelo.iniciarm();
         modelo.cargar(listarepro, folder);
         listarepro.select(0);
+        System.out.println(listarepro.getSelectedItem());
+        modelo.path = folder.getPath();
         modelo.archivo= new File(modelo.unir(listarepro.getSelectedItem()));
         assertEquals(-1, modelo.player.getStatus());
         modelo.play();
@@ -67,13 +67,14 @@ public class ModeloTest1 {
         modelo.stop();
         assertEquals(2, modelo.player.getStatus());
     }
-*/
+
     @Test
     public void adelante() throws Exception {
         modelo.iniciarm();
         modelo.cargar(listarepro,folder);
         listarepro.select(0);
         assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", listarepro.getSelectedItem() );
+        modelo.path = folder.getPath();
         modelo.adelante();
         assertEquals("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3" , listarepro.getSelectedItem());
     }
@@ -84,7 +85,7 @@ public class ModeloTest1 {
         modelo.cargar(listarepro,folder);
         listarepro.select(1);
         assertEquals("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3" , listarepro.getSelectedItem());
-
+        modelo.path = folder.getPath();
         modelo.atras();
         assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", listarepro.getSelectedItem() );
 
@@ -124,6 +125,7 @@ public class ModeloTest1 {
         modelo.cargar(listarepro,folder);
         listarepro.select(0);
         assertEquals(0, listareproad.getItemCount());
+        modelo.path = folder.getPath();
         modelo.agregarLista(listarepro.getSelectedItem() , listareproad);
         assertEquals(1, listareproad.getItemCount());
         modelo.agregarLista(listarepro.getSelectedItem(), listareproad);
@@ -143,6 +145,7 @@ public class ModeloTest1 {
     public void adelanterep() throws Exception {
         modelo.iniciarm();
         modelo.cargar(listarepro,folder);
+        modelo.path = folder.getPath();
         listarepro.select(0);
         assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", listarepro.getSelectedItem() );
         modelo.adelante();
@@ -153,17 +156,18 @@ public class ModeloTest1 {
     public void atrasrep() throws Exception {
         modelo.iniciarm();
         modelo.cargar(listarepro,folder);
+        modelo.path = folder.getPath();
         listarepro.select(1);
         assertEquals("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3" , listarepro.getSelectedItem());
 
         modelo.atras();
         assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", listarepro.getSelectedItem() );
     }
-/*
+
     @Test
     public void verListaRepr() throws Exception {
     }
-
+/*
     @Test
     public void aleatorio() throws Exception {
     }
