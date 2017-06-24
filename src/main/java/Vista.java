@@ -22,7 +22,7 @@ public class Vista extends JFrame implements Observer {
 			miObservador=observador;
 
 
-			setTitle("Reproductor Musical");
+			setTitle("Reproductor de Musica");
 			setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			setBounds(100, 100, 450, 300);
 			setVisible(true);
