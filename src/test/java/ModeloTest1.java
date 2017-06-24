@@ -40,7 +40,7 @@ public class ModeloTest1 {
 
     }
 
-    @Test
+  /*  @Test
     public void play() throws Exception {
 
         modelo.iniciarm();
@@ -52,7 +52,7 @@ public class ModeloTest1 {
         System.out.println("spy  de test " +modelo.player.getStatus());
         assertEquals(0 , modelo.player.getStatus());
     }
-/*
+
     @Test
     public void pause() throws Exception {
         play();
