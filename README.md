@@ -15,3 +15,7 @@
 
 
 ###### Plan de CM - [PDF ]( https://github.com/martintarres/Trabajo-Final-Ingenieria-Software/blob/master/planDeCM.pdf)
+
+###### RelaseNotes - [PDF] (https://github.com/martintarres/TrabajoSoftware/blob/master/informe%20Final.pdf)
+
+###### Informe Final - [PDF](https://github.com/martintarres/TrabajoSoftware/blob/master/informe%20Final.pdf)
