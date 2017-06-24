@@ -80,11 +80,10 @@ public class Modelo implements BasicPlayerListener {
 	 */
 
 
-		void play() {
-			//unir = path.concat("\\" + listapr.getSelectedItem());
+		void play(List listaareproducir) {
 
 
-            archivo = new File(unir(listapr.getSelectedItem()));
+			archivo = new File(unir(listaareproducir.getSelectedItem()));
 
 			System.out.println("soy archivo " + archivo.getAbsolutePath());
 
@@ -92,7 +91,9 @@ public class Modelo implements BasicPlayerListener {
 
 				try {
 					player.open(archivo);
+					System.out.println("asdasdaasddasdasdasd" +player.getStatus());
 					player.play();
+					System.out.println(" asdasdasdasdasdasads" +player.getStatus());
 				} catch (BasicPlayerException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
