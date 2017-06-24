@@ -86,7 +86,7 @@ import java.util.Observer;
 	@Override														// Esta es la parte que implementa los observer
 	public void update(Observable o, Object arg) {
 		seleccion=miObservador.getPanelSeleccionado();				// Se recibe el int que seteamos en los observer
-		System.out.println("Notifico en vistasecundaira con" + seleccion);
+
 		
 		if(seleccion == 3){											// el 3 nos dice que debemos cambiar a la vista de
 			miObservador.setVista(contentPane);						// la lista de reproduccion
@@ -96,14 +96,14 @@ import java.util.Observer;
 		if(seleccion ==1 ){											// Si seleccionamos uno, queda visible el boton de pausa
 			contentPane.remove(BotonPlay);
 			contentPane.add(BotonPause);
-			miObservador.notifyObservers();
+
 			
 		}
 		
 		if ( seleccion == 2){
 			contentPane.remove(BotonPause);							// Si seleccionamos 2, queda visible el boton de play
 			contentPane.add(BotonPlay);
-			miObservador.notifyObservers();
+
 			
 		}
 		
