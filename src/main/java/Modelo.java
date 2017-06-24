@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Modelo implements BasicPlayerListener {
 
-		private String path;
+		public String path;
 		private	File files = null;
 		public BasicPlayer player;
 		public	List listapr;
@@ -37,28 +37,11 @@ public class Modelo implements BasicPlayerListener {
 
 		void iniciarm() {
 			player = new BasicPlayer();                                // Creamos un objeto de la clase BasicPlayer
-
-			/*JFileChooser fc = new JFileChooser();                            //Aca vamos a elegir de que carpeta queremos cargar
-			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);        // nuestras canciones
-
-			/* Component contentPane = null; */
-			/*int ventanaseleccionada = fc.showOpenDialog(null);
-
-			if (ventanaseleccionada == JFileChooser.APPROVE_OPTION) {
-				folder = fc.getSelectedFile();
-				path = folder.getAbsolutePath();                        // aca obtenemos el path de la carpeta seleccionada
-			}*/
-			//path="src/main/resources";
-			//folder = new File("src/main/resources");
-
-			//path= folder.getPath();
-			//System.out.println(path);
 			listarepro= new ArrayList<>();
 			numeroalea = new Random();
 			terminoInicial=0;
 			player.addBasicPlayerListener(this);
 			alea = false;
-			/* boolean termine; */
             enPrincipal=true;
 		}
 
