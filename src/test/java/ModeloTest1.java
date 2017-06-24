@@ -49,11 +49,8 @@ public class ModeloTest1 {
         modelo.path = folder.getPath();
         modelo.archivo= new File(modelo.unir(listarepro.getSelectedItem()));
         modelo.play(listarepro);
-        assertTrue(modelo.player.getStatus() == 0);
-       //modelo.player.open(modelo.archivo);
-       //assertEquals(3, modelo.player.getStatus());
-        //modelo.player.play();
-        //assertEquals(0, modelo.player.getStatus());
+        System.out.println("spy  de test " +modelo.player.getStatus());
+        assertEquals(0 , modelo.player.getStatus());
     }
 /*
     @Test
