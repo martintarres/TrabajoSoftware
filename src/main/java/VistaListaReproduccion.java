@@ -40,7 +40,7 @@ import java.util.Observer;
 		BotonAleatorio = new JToggleButton();
 		BotonAleatorio.setBounds(335, 227, 70, 23);
 		contentPane.add(BotonAleatorio);
-		ImageIcon alea= new ImageIcon(getClass().getResource("alea.png").getPath());
+		ImageIcon alea= new ImageIcon(getClass().getResource("alea.png"));
 		BotonAleatorio.setIcon(alea);
 
 
@@ -72,7 +72,7 @@ import java.util.Observer;
 		BotonVolver = new JButton();
 		BotonVolver.setBounds(25, 11, 96, 23);
 		contentPane.add(BotonVolver);
-		ImageIcon volver= new ImageIcon(getClass().getResource("lista.png").getPath());
+		ImageIcon volver= new ImageIcon(getClass().getResource("lista.png"));
 		BotonVolver.setIcon(volver);
 		
 		BotonBorrar = new JButton("Borrar");

@@ -49,9 +49,10 @@ public class Modelo implements BasicPlayerListener {
 				path = folder.getAbsolutePath();                        // aca obtenemos el path de la carpeta seleccionada
 			}*/
 			//path="src/main/resources";
-			folder = new File("src/main/resources");
-			path= folder.getPath();
-			System.out.println(path);
+			//folder = new File("src/main/resources");
+
+			//path= folder.getPath();
+			//System.out.println(path);
 			listarepro= new ArrayList<>();
 			numeroalea = new Random();
 			terminoInicial=0;
@@ -70,6 +71,7 @@ public class Modelo implements BasicPlayerListener {
 
 			this.listapr = listapr;
 			this.folder=folder;
+
 
 			listFiles = folder.listFiles();
 
@@ -268,9 +270,9 @@ public class Modelo implements BasicPlayerListener {
 		if(ventanaseleccionada== JFileChooser.APPROVE_OPTION){
 				folder=fc.getSelectedFile();
 				path= folder.getAbsolutePath();
-			
-				//path= path.concat("\\");
-				listapr.removeAll();
+				if(listapr!= null) {
+					listapr.removeAll();
+				}
 				cargar(lista, folder);
 		}
 	}

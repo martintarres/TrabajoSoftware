@@ -82,20 +82,22 @@ public class VistaPrincipal extends JFrame implements Observer {
 			SeleccionCarpeta = new JButton();
 			SeleccionCarpeta.setBounds(256, 11, 35, 23);
 			contentPane.add(SeleccionCarpeta);
-			ImageIcon selec= new ImageIcon(getClass().getResource("carpeta.png").getPath());
+	//	C:\Users\marti\Desktop\TrabajoSoftware\src\main\resources\carpeta.png
+			//String carpeta = "src/main/resources/carpeta.png";
+			ImageIcon selec= new ImageIcon(getClass().getClassLoader().getResource("carpeta.png"));
 			SeleccionCarpeta.setIcon(selec);
 			
 			ListaReproduccion = new JButton();
 			ListaReproduccion.setBounds(335, 227, 70, 23);
 			contentPane.add(ListaReproduccion);
-			ImageIcon list= new ImageIcon(getClass().getResource("lista.png").getPath());
+			ImageIcon list= new ImageIcon(getClass().getResource("lista.png"));
 			ListaReproduccion.setIcon(list);
 			
 			AgregarListaReproduccion = new JButton();
 			AgregarListaReproduccion.setBounds(301, 11, 35, 23);
 			contentPane.add(AgregarListaReproduccion);
-			ImageIcon agreg= new ImageIcon(getClass().getResource("mas.png").getPath());
-			System.out.println(getClass().getResource("mas.png").getPath());
+			ImageIcon agreg= new ImageIcon(getClass().getResource("mas.png"));
+			System.out.println(getClass().getResource("mas.png"));
 			AgregarListaReproduccion.setIcon(agreg);
 
 		ThreadLocal<JProgressBar> barraProgreso = new ThreadLocal<>();
