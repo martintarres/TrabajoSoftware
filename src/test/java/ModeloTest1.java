@@ -44,10 +44,8 @@ public class ModeloTest1 {
         modelo.iniciarm();
         modelo.cargar(listarepro, folder);
         listarepro.select(0);
-        System.out.println(listarepro.getSelectedItem());
         modelo.path = folder.getPath();
         modelo.archivo= new File(modelo.unir(listarepro.getSelectedItem()));
-        assertEquals(-1, modelo.player.getStatus());
         modelo.play();
         assertEquals(0, modelo.player.getStatus());
     }
