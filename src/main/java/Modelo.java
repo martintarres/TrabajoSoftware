@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 /*
-	En la clase modelo se encuentra todo el codigo que accen las acciones
+	En la clase modelo se encuentra todo el codigo que hacen las acciones
  */
 public class Modelo implements BasicPlayerListener {
 
@@ -26,8 +26,12 @@ public class Modelo implements BasicPlayerListener {
 		private int terminoInicial;
 		private int terminoFinal;
 		public File archivo;
+    //private double bytesLength;
+		//private float progressUpdate;
+		//private int progressNow;
 		private boolean alea;
         boolean enPrincipal;
+	private static Modelo unique_model;
 
 
 
@@ -41,6 +45,14 @@ public class Modelo implements BasicPlayerListener {
 			alea = false;
             enPrincipal=true;
 		}
+
+	public static Modelo getInstance() {
+		if (unique_model == null) {
+			unique_model = new Modelo();
+		}
+
+		return unique_model;
+	}
 
 		/*
             en el metodo cargar lo que hacemos es cargar todas las canciones que esten en los formatos soportados por nuestro
@@ -59,8 +71,9 @@ public class Modelo implements BasicPlayerListener {
 			for (File listFile : listFiles) {
 				if (listFile.isFile()) {
 					files = listFile.getAbsoluteFile();
-					if (files.getName().endsWith("mp3") || files.getName().endsWith("wav")) {
+					if (files.getName().endsWith("mp3") || files.getName().endsWith("wav") || files.getName().endsWith("mp4")) {
 						System.out.println(files);
+						//		System.out.println(listFiles[i]);
 						listapr.add(files.getName());
 
 					}
@@ -81,12 +94,15 @@ public class Modelo implements BasicPlayerListener {
 
 			archivo = new File(unir(listaareproducir.getSelectedItem()));
 
+			System.out.println("soy archivo " + archivo.getAbsolutePath());
 
 			if (player.getStatus() == -1 || player.getStatus() == 2) {
 
 				try {
 					player.open(archivo);
+					System.out.println("asdasdaasddasdasdasd" +player.getStatus());
 					player.play();
+					System.out.println(" asdasdasdasdasdasads" +player.getStatus());
 				} catch (BasicPlayerException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -99,6 +115,7 @@ public class Modelo implements BasicPlayerListener {
 					player.open(new File(unir));
 
 					player.play();
+					System.out.println("Soy status play " + player.getStatus());
 
 				} catch (BasicPlayerException e1) {
 					// TODO Auto-generated catch block
@@ -111,6 +128,7 @@ public class Modelo implements BasicPlayerListener {
 
 				try {
 					player.resume();
+					System.out.println("Soy status resume " + player.getStatus());
 				} catch (BasicPlayerException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -124,7 +142,7 @@ public class Modelo implements BasicPlayerListener {
 		El metodo unir me crea el path completo para poder reproducir
 		 */
 
-		String unir(String seleccion){
+		public String unir(String seleccion){
 			unir = path.concat("\\" + seleccion);
 			return unir;
 
@@ -137,6 +155,7 @@ public class Modelo implements BasicPlayerListener {
 	void pause(){
 		try {
 			player.pause();
+			System.out.println("soy status pausa " + player.getStatus());
 		} catch (BasicPlayerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -150,6 +169,7 @@ public class Modelo implements BasicPlayerListener {
 	void stop(){
 		try {
 			player.stop();
+			System.out.println("Soy status stop " + player.getStatus());
 		} catch (BasicPlayerException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -162,6 +182,7 @@ public class Modelo implements BasicPlayerListener {
 
 	void adelante(){
 		listapr.select((listapr.getSelectedIndex()+1));
+		//unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
 		try {
 			player.stop();
 			player.open(new File(unir(listapr.getSelectedItem())));
@@ -178,6 +199,7 @@ public class Modelo implements BasicPlayerListener {
 	void atras(){
 		
 		listapr.select((listapr.getSelectedIndex()-1));
+		//unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
 		try {
 			player.stop();
 			player.open(new File(unir(listapr.getSelectedItem())));
@@ -214,11 +236,11 @@ public class Modelo implements BasicPlayerListener {
 		for (File listFile : listFiles) {
 			if (listFile.isFile()) {
 				files = listFile.getAbsoluteFile();
-				if (files.getName().endsWith("mp3") || files.getName().endsWith("wav")) {
+				if (files.getName().endsWith("mp3") || files.getName().endsWith("wav") || files.getName().endsWith("mp4")) {
 
 
 					if (files.toString().toLowerCase().contains(s)) {        // se fija si hay canciones que contengan las letras
-																			// que estamos ingresando, ignorando mayusculas
+						//System.out.println(files.toString());			// que estamos ingresando, ignorando mayusculas
 						listarecibida.add(files.getName());                    // y si hay, las agrega a la lista
 
 					}
@@ -277,6 +299,7 @@ public class Modelo implements BasicPlayerListener {
 
 			}
 		}
+		System.out.println("tengo " + listarepro.size()+ " archivos");
 	}
 
 	
@@ -345,6 +368,7 @@ public class Modelo implements BasicPlayerListener {
 
 	@Override
 	public void stateUpdated(BasicPlayerEvent basicPlayerEvent) {
+		System.out.println("soy evento de modelo "+ basicPlayerEvent.getCode());
 
 				if (basicPlayerEvent.getCode() == 8) {
 					if(!enPrincipal) {
