@@ -7,9 +7,8 @@ import java.util.Observable;
 import java.util.Observer;
         class VistaListaReproduccion extends JFrame implements Observer {
     private ClaseObservador miObservador;
-	//ClaseObservador miObser;
-    private int seleccion;
-	private JPanel contentPane;
+
+			private JPanel contentPane;
 	List ListaAleatoria;
 	JToggleButton BotonAleatorio;
 	JButton BotonAdelante;
@@ -85,7 +84,7 @@ import java.util.Observer;
 
 	@Override														// Esta es la parte que implementa los observer
 	public void update(Observable o, Object arg) {
-		seleccion=miObservador.getPanelSeleccionado();				// Se recibe el int que seteamos en los observer
+		int seleccion = miObservador.getPanelSeleccionado();
 
 		
 		if(seleccion == 3){											// el 3 nos dice que debemos cambiar a la vista de

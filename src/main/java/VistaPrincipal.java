@@ -67,7 +67,7 @@ public class VistaPrincipal extends JFrame implements Observer {
 			contentPane.add(BotonStop);
 
 
-		Label textoBuscar = new Label("Buscar Cancion");
+			Label textoBuscar = new Label("Buscar Cancion");
 			textoBuscar.setBounds(19, 11, 104, 23);
 			contentPane.add(textoBuscar);
 			
@@ -77,13 +77,10 @@ public class VistaPrincipal extends JFrame implements Observer {
 			
 			BotonPause = new JButton("||");
 			BotonPause.setBounds(90, 227, 70, 23);
-			//contentPane.add(BotonPause);
 			
 			SeleccionCarpeta = new JButton();
 			SeleccionCarpeta.setBounds(256, 11, 35, 23);
 			contentPane.add(SeleccionCarpeta);
-	//	C:\Users\marti\Desktop\TrabajoSoftware\src\main\resources\carpeta.png
-			//String carpeta = "src/main/resources/carpeta.png";
 			ImageIcon selec= new ImageIcon(getClass().getClassLoader().getResource("carpeta.png"));
 			SeleccionCarpeta.setIcon(selec);
 			
@@ -100,18 +97,11 @@ public class VistaPrincipal extends JFrame implements Observer {
 			System.out.println(getClass().getResource("mas.png"));
 			AgregarListaReproduccion.setIcon(agreg);
 
-		ThreadLocal<JProgressBar> barraProgreso = new ThreadLocal<>();
-			barraProgreso.set(new JProgressBar());
-			barraProgreso.get().setBounds(36, 236, 304, 14);
-			//contentPane.add(BarraProgreso);
-			
-			
 		}
 
 		@Override													// Esta es la parte que implementa los observer
 		public void update(Observable o, Object arg) {
 			int seleccion = miObservador.getPanelSeleccionado();
-			System.out.println("Notifico en vistaprinciapl");
 			
 			if(seleccion ==1 ){
 				contentPane.remove(BotonPlay);						// Si seleccionamos uno, queda visible el boton de pausa

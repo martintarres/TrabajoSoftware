@@ -25,8 +25,6 @@ public class Controlador implements ActionListener  {
 		this.modelo=modelo;
 		this.vista=vista;
 
-		/*boolean termino;*/
-
 		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
 			botones pertenencientes a la clase principal
 		 */
@@ -42,11 +40,7 @@ public class Controlador implements ActionListener  {
 		vista.vistaprincipal.SeleccionCarpeta.addActionListener(this);
 		vista.vistaprincipal.ListaReproduccion.addActionListener(this);
 		vista.vistaprincipal.AgregarListaReproduccion.addActionListener(this);
-		//vista.vistaprincipal.list.addMouseListener(ml);
-		//modelo.player.addBasicPlayerListener();
 
-
-		
 		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
 			botones pertenencientes a la clase lista de reproduccion
 		 */
@@ -81,12 +75,8 @@ public class Controlador implements ActionListener  {
 	
 	void iniciar(){
 		modelo.iniciarm();
-		
 		listapr = vista.vistaprincipal.list;
-
 		modelo.seleccioncarpeta(listapr);
-		//modelo.cargar(listapr, modelo.folder);
-
 		listarep = vista.vistalistareproduccion.ListaAleatoria;
 	}
 
@@ -216,14 +206,6 @@ public class Controlador implements ActionListener  {
 		}
 		 
 	 }
-
-	 /*public void avisar(){
-		System.out.println("soy termino " + termino);
-		termino=true;
-		System.out.println("soy termino " + termino);
-	//	modelo.adelante();
-
-	 }*/
 
 
 }

@@ -4,8 +4,7 @@ import java.util.Observable;
 class ClaseObservador extends Observable {
 	private int contentPaneSeleccionado;
 	private JPanel panel;
-	/*public JButton boton;*/
-	
+
 	ClaseObservador(){
 		
 	}
@@ -20,7 +19,7 @@ class ClaseObservador extends Observable {
 	int getPanelSeleccionado() {								// Se pasa un entero para saber a que
 																	// panel nos estamos refiriendo
 		return contentPaneSeleccionado;
-	}	//
+	}
 
 	void setVista(JPanel panel) {							// en los observers se carga el panel que vamos a ver
 
@@ -28,7 +27,6 @@ class ClaseObservador extends Observable {
 
 	}
 	JPanel getVista(){
-		//notifyObservers();
 		return panel;
 		
 	}
